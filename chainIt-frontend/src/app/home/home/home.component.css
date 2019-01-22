@@ -1,0 +1,8 @@
+mat-sidenav {
+  width: 300px;
+  padding: 10px;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
