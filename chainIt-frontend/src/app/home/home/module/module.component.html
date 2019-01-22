@@ -1,15 +1,14 @@
 <div class="grid-container">
   <h1 class="mat-h1">{{moduleName}}</h1>
   <mat-grid-list cols="4" rowHeight="200px">
-    <mat-grid-tile [colspan]="cards[0].?cols" [rowspan]="cards[0].rows">
+    <mat-grid-tile [colspan]="4" [rowspan]="2">
       <mat-card class="dashboard-card">
         <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
+          <mat-card-title>Card
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>{{card.content}}
+          <div>Content
         </div>
         </mat-card-content>
       </mat-card>
