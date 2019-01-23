@@ -25,3 +25,17 @@
     height: 370px;
     display: inline-flex;
   }
+
+  table {
+    width: 100%;
+  }
+
+  .example-table-container {
+    position: relative;
+    max-height: 300px;
+    overflow: auto;
+  }
+
+  tr{
+    text-align: left;
+  }
