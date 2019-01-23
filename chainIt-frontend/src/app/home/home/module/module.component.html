@@ -1,15 +1,37 @@
 <div class="grid-container">
   <h1 class="mat-h1">{{moduleName}}</h1>
   <mat-grid-list cols="4" rowHeight="200px">
-    <mat-grid-tile [colspan]="4" [rowspan]="2">
+    <mat-grid-tile [colspan]="cardSizes[0].cols" [rowspan]="cardSizes[0].rows">
       <mat-card class="dashboard-card">
         <mat-card-header>
-          <mat-card-title>Card
-          </mat-card-title>
+          <mat-card-title>Temperatuur</mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>Content
+          <div class="chart_1"><ngx-charts-line-chart
+            [scheme]="colorScheme"
+            [results]="tempGraph"
+            [xAxis]="true"
+            [yAxis]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [xAxisLabel]="'Tijd (u)'"
+            [yAxisLabel]="'Temp (°C)'"
+            [autoScale]="true"
+            [timeline]="true"
+            (select)="onSelect($event)">
+          </ngx-charts-line-chart>
         </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="cardSizes[1].cols" [rowspan]="cardSizes[1].rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Geschiedenis</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="chart_1">tabel met zever</div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

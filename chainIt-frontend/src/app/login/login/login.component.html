@@ -1,10 +1,19 @@
-<form class="loginForm">
-  <mat-form-field class="full-width">
-    <input matInput placeholder="username" value="">
-  </mat-form-field>
-  <mat-form-field class="full-width">
-    <input matInput placeholder="password" value="">
-  </mat-form-field>
-  <button mat-raised-button color="primary" type="submit">Send</button>
- <!-- <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid">Send</button>-->
-</form>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Gelieven in te loggen</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+            <mat-form-field>
+                <input matInput placeholder="Email" name="email" required #email>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Wachtwoord" type="password" name="wachtwoord" required #password>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-spinner *ngIf="authService.loading"></mat-spinner>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="emailLogin(email.value, password.value)">Inloggen</button>
+    </mat-card-actions>
+</mat-card>
