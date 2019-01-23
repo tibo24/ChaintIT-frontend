@@ -27,4 +27,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  windowResize(){
+    window.dispatchEvent(new Event('resize'));
+  }
+  
+
 }

@@ -12,10 +12,11 @@ import { NgxChartsModule, CardSeriesComponent } from '@swimlane/ngx-charts';
 export class ModuleComponent implements OnInit {
   moduleName : String = "Module 123";
   cardSizes : any;
+  view: number[];
   dataSource : any[] = [
     {location: 'Geel', date: '23/1/2019-18:00', temp: 1.0079},
     {location: 'Geel', date: '23/1/2019-19:00', temp: 4.0026},
-    {location: 'Geel', date: '23/1/2019-20:00', temp: 6.941},
+    {location: 'Geel', date: '23/1/2019-20:00', temp: 6.941},    
     {location: 'Geel', date: '23/1/2019-21:00', temp: 9.0122},
     {location: 'Geel', date: '23/1/2019-22:00', temp: 10.811},
     {location: 'Geel', date: '23/1/2019-23:00', temp: 12.0107},
@@ -79,9 +80,11 @@ export class ModuleComponent implements OnInit {
   };
   
   
+  
   constructor(private breakpointObserver: BreakpointObserver) { }
   
   ngOnInit() {
   }
 
+  onResize(event) { this.view = [event.target.innerWidth - 900, 280 ]; }
 }
