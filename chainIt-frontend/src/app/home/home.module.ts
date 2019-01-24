@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './home/home.component';
-import { HomeRoutingModule } from './home-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { ModuleComponent } from './home/module/module.component';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { HomeRoutingModule } from './home-routing.module';
 
 @NgModule({
-  declarations: [HomeComponent, ModuleComponent],
+  declarations: [HomeComponent],
   imports: [
     SharedModule,
-    HomeRoutingModule,
-    NgxChartsModule
+    HomeRoutingModule
   ]
 })
-export class HomeModule {}
+export class HomeModule { }
