@@ -4,7 +4,7 @@
       <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
     </mat-form-field>
 
-    <mat-icon color="primary" class="add-user">person_add</mat-icon>
+    <mat-icon (click)="openRegisterUserDialog()" color="primary" class="add-user">person_add</mat-icon>
 
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="email">
@@ -24,15 +24,18 @@
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actie</th>
-        <td mat-cell *matCellDef="let row">
-          <mat-icon (click)="openDialog()" color="primary">person</mat-icon>
-          &nbsp;
-          <mat-icon color="warn">delete</mat-icon>
+        <td mat-cell *matCellDef="let user">
+          <!-- <mat-icon  color="primary">person</mat-icon>
+          &nbsp; -->
+          <mat-icon (click)="openDeleteUserDialog(user.firstname, user.id)" color="warn">delete</mat-icon>
         </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
   </div>
 </div>

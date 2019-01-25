@@ -7,12 +7,10 @@ import { AppRoutingModule } from './app-routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { ModuleModule } from './module/module.module';
 import { HttpClientModule } from '@angular/common/http';
-import { NewUserDialogComponent } from './new-user-dialog/new-user-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NewUserDialogComponent
   ],
   imports: [
     BrowserModule,

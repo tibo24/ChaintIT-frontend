@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { UserService } from 'src/app/services/user.service';
-import { MatDialogConfig, MatDialog } from '@angular/material';
+import { MatDialogConfig, MatDialog, MatPaginator } from '@angular/material';
 import { NewUserDialogComponent } from '../new-user-dialog/new-user-dialog.component';
+import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dialog.component';
 
 @Component({
   selector: 'app-admin-user-info',
@@ -18,6 +19,8 @@ export class AdminUserInfoComponent implements OnInit {
   cardSizes: any;
   userList;
   response: any[] = [];
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   cards = this.breakpointObserver.observe(Breakpoints.Large).pipe(
     map(({ matches }) => {
@@ -40,20 +43,12 @@ export class AdminUserInfoComponent implements OnInit {
 
 
   ngOnInit() {
-    this.userList = this.userService.getAllUsers(),
-      this.userList.subscribe(res => {
-
-        for (let user of res) {
-          this.response.push({ 'email': user.email, 'firstname': user.firstname, 'lastname': user.lastname });
-          this.dataSource.data = this.response;
-        }
-
-      });
+    this.dataSource.paginator = this.paginator;
+    this.getAllUsers();
   }
 
-  openDialog() {
+  openRegisterUserDialog() {
     const dialogConfig = new MatDialogConfig();
-
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
@@ -69,7 +64,32 @@ export class AdminUserInfoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if (data) {
-          console.log(data);
+          this.userService.registerUser(data)
+            .then(() => {
+              this.getAllUsers();
+            })
+        }
+      }
+    );
+  }
+
+  openDeleteUserDialog(firstname: string, userId: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    dialogConfig.data = {
+      title: 'Bent u zeker dat u ' + firstname + ' wilt verwijderen?'
+    }
+
+    const dialogRef = this.dialog.open(DeleteUserDialogComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      (data) => {
+        if (data) {
+          this.userService.deleteUser(firstname, userId)
+            .then(() => {
+              this.getAllUsers();
+            })
         }
       }
     );
@@ -77,6 +97,17 @@ export class AdminUserInfoComponent implements OnInit {
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  getAllUsers() {
+    this.response = [];
+    this.userList = this.userService.getAllUsers(),
+      this.userList.subscribe(res => {
+        for (let user of res) {
+          this.response.push({ 'id': user._id, 'email': user.email, 'firstname': user.firstname, 'lastname': user.lastname });
+          this.dataSource.data = this.response;
+        }
+      });
   }
 
 }
