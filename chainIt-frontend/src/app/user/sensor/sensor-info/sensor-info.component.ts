@@ -53,8 +53,12 @@ export class ModuleInfoComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private sensorService: SensorService) { }
 
   ngOnInit() {
-    this.moduleName = 'sensor1';
-    this.sensorDataList = this.sensorService.getSensorDataByName('sensor1');
+    
+  }
+
+  getSensor(sensor : string){
+    this.moduleName = sensor;
+    this.sensorDataList = this.sensorService.getSensorDataByName(sensor);
     this.sensorDataList.subscribe(res => {
     let sensorData = res.dataReading;
 
@@ -64,7 +68,6 @@ export class ModuleInfoComponent implements OnInit {
         this.tempGraph = [...this.tempGraph];
         this.dataSource.data = this.response;
       }
-
     });
   }
 
