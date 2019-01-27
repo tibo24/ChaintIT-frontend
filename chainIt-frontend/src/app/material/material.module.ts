@@ -1,31 +1,29 @@
 import { NgModule } from '@angular/core';
-import {MatInputModule, MatButtonModule, MatSidenavModule, MatIconModule, MatGridListModule,
-   MatCardModule, MatMenuModule, MatDatepickerModule, MatNativeDateModule, MatListModule, MatToolbarModule, MatProgressSpinnerModule, 
-   MatSnackBarModule, 
-   MatTableModule} from '@angular/material';
+import {
+  MatInputModule,
+  MatButtonModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatGridListModule,
+  MatCardModule,
+  MatMenuModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatListModule,
+  MatToolbarModule,
+  MatProgressSpinnerModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatPaginatorModule,
+} from '@angular/material';
 
 @NgModule({
   declarations: [],
   imports: [
-    MatInputModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatIconModule,
-    MatGridListModule,
-    MatCardModule,
-    MatMenuModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatListModule,
-    MatToolbarModule,
-    MatProgressSpinnerModule,
-    MatSnackBarModule,
-    MatTableModule
   ], exports: [
     MatInputModule,
     MatButtonModule,
     MatSidenavModule,
-    MatIconModule,
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
@@ -35,9 +33,11 @@ import {MatInputModule, MatButtonModule, MatSidenavModule, MatIconModule, MatGri
     MatToolbarModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatTableModule 
-  ], providers: [  
-    MatDatepickerModule,  
+    MatTableModule,
+    MatPaginatorModule,
+    MatIconModule,
+  ], providers: [
+    MatDatepickerModule,
   ]
 })
 export class MaterialModule { }

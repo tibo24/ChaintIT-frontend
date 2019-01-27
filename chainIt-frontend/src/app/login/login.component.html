@@ -1,0 +1,27 @@
+<h1 class="mat-h1">Gelieven in te loggen</h1>
+<mat-card class="card">
+  <mat-card-content>
+    <form class="form">
+      <table class="full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Email" name="email" required #email>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field class="full-width">
+              <input matInput placeholder="Wachtwoord" type="password" name="password" required #password>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </mat-card-content>
+  <!-- <mat-spinner *ngIf="authService.loading"></mat-spinner> -->
+  <mat-card-actions>
+    <button mat-raised-button color="primary" (click)="emailLogin(email.value, password.value)">Inloggen</button>
+  </mat-card-actions>
+</mat-card>

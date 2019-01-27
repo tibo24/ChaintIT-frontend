@@ -1,0 +1,22 @@
+<mat-toolbar color="primary" class="example-toolbar">
+  <button class='menuButton' mat-icon-button (click)="sidenav.toggle(); windowResize()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="spacer"></span>
+  <h1 class="example-app-name">ChainIT - Dashboard</h1>
+  <span class="spacer"></span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav [mode]="modeView">
+    <mat-form-field>
+      <input matInput placeholder="Module name" value="">
+    </mat-form-field>
+    <button mat-button>
+      <mat-icon>search</mat-icon>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

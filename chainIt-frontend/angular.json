@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "chainIt-frontend": {
+    "ChainIT-Frontend": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/chainIt-frontend",
+            "outputPath": "dist/ChainIT-Frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -43,32 +43,25 @@
               "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
+              "buildOptimizer": true
             }
           }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "chainIt-frontend:build"
+            "browserTarget": "ChainIT-Frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "chainIt-frontend:build:production"
+              "browserTarget": "ChainIT-Frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "chainIt-frontend:build"
+            "browserTarget": "ChainIT-Frontend:build"
           }
         },
         "test": {
@@ -102,20 +95,19 @@
         }
       }
     },
-    "chainIt-frontend-e2e": {
+    "ChainIT-Frontend-e2e": {
       "root": "e2e/",
       "projectType": "application",
-      "prefix": "",
       "architect": {
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "chainIt-frontend:serve"
+            "devServerTarget": "ChainIT-Frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "chainIt-frontend:serve:production"
+              "devServerTarget": "ChainIT-Frontend:serve:production"
             }
           }
         },
@@ -131,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "chainIt-frontend"
+  "defaultProject": "ChainIT-Frontend"
 }
