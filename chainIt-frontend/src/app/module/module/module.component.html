@@ -17,7 +17,7 @@
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
     <mat-list>
-      <mat-list-item *ngFor="let module of modules">{{module}}</mat-list-item>
+      <mat-list-item *ngFor="let module of modules"><button mat-button (click)="openSensorData(module)">{{module}}</button></mat-list-item>
      </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
