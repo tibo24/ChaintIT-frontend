@@ -7,6 +7,7 @@ import { AdminUserInfoComponent } from './admin/user-info/admin-user-info.compon
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { SensorInfoComponent } from './user/sensor/sensor-info/sensor-info.component';
 import { UserGuard } from './guards/user.guard';
+import { Role } from './models/role';
 
 const routes: Routes = [
   {
@@ -16,20 +17,26 @@ const routes: Routes = [
   {
     path: 'main-dashboard',
     component: MainDashboardComponent,
-    canActivate: [UserGuard]
+    canActivate: [UserGuard],
+    data: { roles: [Role.User] }
   },
   {
     path: 'sensor',
     component: SensorInfoComponent,
-    canActivate: [UserGuard]
+    canActivate: [UserGuard],
+    data: { roles: [Role.User] }
   },
   {
     path: 'admin/sensors',
-    component: AdminSensorInfoComponent
+    component: AdminSensorInfoComponent,
+    canActivate: [UserGuard],
+    data: { roles: [Role.Admin] }
   },
   {
     path: 'admin/users',
-    component: AdminUserInfoComponent
+    component: AdminUserInfoComponent,
+    canActivate: [UserGuard],
+    data: { roles: [Role.Admin] }
   },
   {
     path: '**',
