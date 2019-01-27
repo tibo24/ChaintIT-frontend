@@ -14,7 +14,7 @@
       <a mat-list-item routerLink="admin/users">Admin/users</a>
       <a mat-list-item routerLink="admin/sensors">Admin/sensors</a>
       <a mat-list-item routerLink="login">Inloggen</a>
-      <a mat-list-item routerLink="">Uitloggen</a>
+      <a mat-list-item (click)="logout()">Uitloggen</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

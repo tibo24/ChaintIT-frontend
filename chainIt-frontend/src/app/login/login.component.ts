@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,16 +9,17 @@ import { MatSnackBar } from '@angular/material';
 })
 export class LoginComponent implements OnInit {
 
-  loginData = {
-    email: '',
-    password: ''
-  };
-  constructor(public snackBar: MatSnackBar) { }
+  constructor(private authService: AuthService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
-  emailLogin(email: string, password: string) {
+  login(email: string, password: string) {
+    if (email && password) {
+      this.authService.login(email, password);
+    } else {
+      this.openSnackbar('Gelieven uw email/wachtwoord in te geven aub')
+    }
   }
 
   openSnackbar(message: string) {

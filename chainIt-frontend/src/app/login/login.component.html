@@ -20,8 +20,8 @@
       </table>
     </form>
   </mat-card-content>
-  <!-- <mat-spinner *ngIf="authService.loading"></mat-spinner> -->
+  <mat-spinner *ngIf="authService.loading"></mat-spinner>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="emailLogin(email.value, password.value)">Inloggen</button>
+    <button mat-raised-button color="primary" (click)="login(email.value, password.value)">Inloggen</button>
   </mat-card-actions>
 </mat-card>

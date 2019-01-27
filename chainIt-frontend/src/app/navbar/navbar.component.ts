@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BreakpointState, BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,25 +8,29 @@ import { BreakpointState, BreakpointObserver, Breakpoints } from '@angular/cdk/l
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  modeView : String;
+  modeView: String;
 
   mode = this.breakpointObserver.observe(Breakpoints.Large)
-  .subscribe((state: BreakpointState) => {
-      if(state.matches){
+    .subscribe((state: BreakpointState) => {
+      if (state.matches) {
         this.modeView = 'side';
       } else {
         this.modeView = 'push';
       }
-    }    
-  );
+    }
+    );
 
-  constructor(private breakpointObserver: BreakpointObserver) {  }
+  constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) { }
 
   ngOnInit() {
   }
 
-  windowResize(){
+  windowResize() {
     window.dispatchEvent(new Event('resize'));
+  }
+
+  logout() {
+    this.authService.logout();
   }
 
 }

@@ -5,11 +5,11 @@ import { NewSensorDialogComponent } from '../new-sensor-dialog/new-sensor-dialog
 import { DeleteSensorDialogComponent } from '../delete-sensor-dialog/delete-sensor-dialog.component';
 
 @Component({
-  selector: 'app-sensor-info',
-  templateUrl: './sensor-info.component.html',
-  styleUrls: ['./sensor-info.component.css']
+  selector: 'app-admin-sensor-info',
+  templateUrl: './admin-sensor-info.component.html',
+  styleUrls: ['./admin-sensor-info.component.css']
 })
-export class SensorInfoComponent implements OnInit {
+export class AdminSensorInfoComponent implements OnInit {
 
   displayedColumns: string[] = ['lrcid', 'actions'];
   dataSource = new MatTableDataSource<any[]>();

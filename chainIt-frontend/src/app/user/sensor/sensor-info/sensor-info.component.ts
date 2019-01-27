@@ -5,11 +5,11 @@ import { SensorService } from 'src/app/services/sensor.service';
 import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
-  selector: 'app-module-info',
-  templateUrl: './module-info.component.html',
-  styleUrls: ['./module-info.component.css']
+  selector: 'app-sensor-info',
+  templateUrl: './sensor-info.component.html',
+  styleUrls: ['./sensor-info.component.css']
 })
-export class ModuleInfoComponent implements OnInit {
+export class SensorInfoComponent implements OnInit {
   sensorDataList;
   moduleName: string;
   cardSizes: any;

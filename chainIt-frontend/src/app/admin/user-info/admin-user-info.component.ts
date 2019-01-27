@@ -8,11 +8,11 @@ import { NewUserDialogComponent } from '../new-user-dialog/new-user-dialog.compo
 import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dialog.component';
 
 @Component({
-  selector: 'app-user-info',
-  templateUrl: './user-info.component.html',
-  styleUrls: ['./user-info.component.css']
+  selector: 'app-admin-user-info',
+  templateUrl: './admin-user-info.component.html',
+  styleUrls: ['./admin-user-info.component.css']
 })
-export class UserInfoComponent implements OnInit {
+export class AdminUserInfoComponent implements OnInit {
 
   displayedColumns: string[] = ['email', 'firstname', 'lastname', 'actions'];
   dataSource = new MatTableDataSource<any[]>();
