@@ -2,14 +2,14 @@
 <div class="grid-container">
   <mat-grid-list cols="4" rowHeight="200px">
     <mat-grid-tile [colspan]="cardSizes[0].cols" [rowspan]="cardSizes[0].rows">
-      <mat-card class="dashboard-card-sensors">
+      <mat-card class="dashboard-card-shipments">
         <mat-card-header>
-          <mat-card-title>Status Sensoren</mat-card-title>
+          <mat-card-title>Status Shipments</mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <div class="chart_1">
             <ngx-charts-pie-grid (window:resize)="onResize($event)" [scheme]="colorScheme" [results]="sensorData"
-              [animations]="true" label="Aantal" (select)="onSelect($event)" [view]="view">
+              [animations]="true" label="Aantal" [view]="view">
             </ngx-charts-pie-grid>
           </div>
         </mat-card-content>
@@ -19,7 +19,7 @@
     <mat-grid-tile [colspan]="cardSizes[1].cols" [rowspan]="cardSizes[1].rows">
       <mat-card class="dashboard-card-history">
         <mat-card-header>
-          <mat-card-title>Sensoren</mat-card-title>
+          <mat-card-title>Shipments</mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <div class="example-table-container">
@@ -27,32 +27,43 @@
             <mat-form-field class="filter">
               <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
             </mat-form-field>
-            &nbsp;
+            <!-- &nbsp;
             <mat-form-field class="filter">
               <input matInput [matDatepicker]="picker" placeholder="Kies een datum">
               <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
               <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
+            </mat-form-field> -->
 
             <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
-              <ng-container matColumnDef="lrcid">
-                <th mat-header-cell *matHeaderCellDef>lrcid</th>
-                <td mat-cell *matCellDef="let sensor"> {{sensor.lrcid}} </td>
+              <ng-container matColumnDef="product">
+                <th mat-header-cell *matHeaderCellDef>Product</th>
+                <td mat-cell *matCellDef="let shipment"> {{shipment.productName}} </td>
               </ng-container>
 
-              <ng-container matColumnDef="temp">
-                <th mat-header-cell *matHeaderCellDef>Temperatuur</th>
-                <td mat-cell *matCellDef="let sensor"> {{sensor.temp}} </td>
-              </ng-container>
-
-              <ng-container matColumnDef="date">
-                <th mat-header-cell *matHeaderCellDef>Datum</th>
-                <td mat-cell *matCellDef="let sensor"> {{sensor.date}} </td>
+              <ng-container matColumnDef="aantal">
+                <th mat-header-cell *matHeaderCellDef>Aantal</th>
+                <td mat-cell *matCellDef="let shipment"> {{shipment.unitCount}} </td>
               </ng-container>
 
               <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef>Status</th>
-                <td mat-cell *matCellDef="let sensor"> {{sensor.status}} </td>
+                <td mat-cell *matCellDef="let shipment"> {{shipment.status}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="sensor">
+                <th mat-header-cell *matHeaderCellDef>Sensor</th>
+                <td mat-cell *matCellDef="let shipment"> {{shipment.sensor}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Actie</th>
+                <td mat-cell *matCellDef="let shipment">
+                  <mat-icon (click)="openResponsibleUserDialog(shipment.sender, shipment.shipper, shipment.receiver, shipment.verantwoordelijken, shipment.shipmentId)"
+                    color="primary">person</mat-icon>
+                  <a target="_blank" [routerLink]="['/shipment/', shipment.shipmentId]">
+                    <mat-icon color="primary">open_in_new</mat-icon>
+                  </a>
+                </td>
               </ng-container>
 
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

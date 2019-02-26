@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatSnackBar } from "@angular/material";
-import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-new-user-dialog',
@@ -10,34 +10,47 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 export class NewUserDialogComponent implements OnInit {
 
   form: FormGroup;
-  firstname: string;
-  lastname: string;
+  firstName: string;
+  lastName: string;
   email: string;
   password: string;
+  company: string;
+  participant: string;
+  selectedParticipant: string;
+
+  participants: string[] = [
+    'Sender',
+    'Shipper',
+    'Receiver'
+  ];
 
   constructor(
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<NewUserDialogComponent>,
     private snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) data) {
-    this.firstname = data.firstname;
-    this.lastname = data.lastname;
+    this.firstName = data.firstName;
+    this.lastName = data.lastName;
     this.email = data.email;
     this.password = data.password;
+    this.company = data.company;
   }
 
   ngOnInit() {
     this.form = this.fb.group({
-      firstname: [this.firstname, []],
-      lastname: [this.lastname, []],
-      email: [this.email, []],
-      password: [this.password, []],
+      firstName: [this.firstName, [Validators.required]],
+      lastName: [this.lastName, [Validators.required]],
+      email: [this.email, [Validators.required]],
+      password: [this.password, [Validators.required]],
+      selectedParticipant: [this.selectedParticipant, [Validators.required]],
+      company: [this.company, [Validators.required]],
     });
   }
 
   submit() {
     var value = this.form.value;
-    if (value.firstname && value.lastname && value.email && value.password) {
+    console.log(this.form.value);
+    if (true) {
       this.dialogRef.close(this.form.value);
     } else {
       this.openSnackbar('Gelieven alles in te vullen aub')

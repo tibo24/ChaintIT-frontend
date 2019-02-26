@@ -1,0 +1,94 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Shipment {{ snapshotParam }} {{ status }}</h1>
+  <mat-grid-list cols="4" rowHeight="200px">
+
+    <mat-grid-tile [colspan]="cardSizes[0].cols" [rowspan]="cardSizes[0].rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Inhoud</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <h2>{{ product }}</h2>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="cardSizes[0].cols" [rowspan]="cardSizes[0].rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Temperatuur</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <h2>{{ currentTemp }}°C</h2>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="cardSizes[0].cols" [rowspan]="cardSizes[0].rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Min. Temperatuur</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <h2>{{ minTemp }}°C</h2>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="cardSizes[0].cols" [rowspan]="cardSizes[0].rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Max. Temperatuur</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <h2>{{ maxTemp }}°C</h2>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="cardSizes[1].cols" [rowspan]="cardSizes[1].rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Temperatuur</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="chart_1">
+            <ngx-charts-line-chart [scheme]="colorScheme" [results]="tempGraph" [xAxis]="true" [yAxis]="true"
+              [showXAxisLabel]="true" [showYAxisLabel]="true" [xAxisLabel]="'Tijd (u)'" [yAxisLabel]="'Temp (°C)'"
+              [autoScale]="true" [timeline]="true">
+            </ngx-charts-line-chart>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="cardSizes[2].cols" [rowspan]="cardSizes[2].rows">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>Geschiedenis</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div class="example-table-container">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
+              <ng-container matColumnDef="location">
+                <th mat-header-cell *matHeaderCellDef>Locatie</th>
+                <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+              </ng-container>
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef>Datum</th>
+                <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+              </ng-container>
+              <ng-container matColumnDef="temp">
+                <th mat-header-cell *matHeaderCellDef>Temperatuur</th>
+                <td mat-cell *matCellDef="let element"> {{element.temp}} </td>
+              </ng-container>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+</div>

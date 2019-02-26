@@ -14,11 +14,15 @@ import { AdminSensorInfoComponent } from './admin/sensor-info/admin-sensor-info.
 import { AdminUserInfoComponent } from './admin/user-info/admin-user-info.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MaterialModule } from './material/material.module';
-import { SensorInfoComponent } from './user/sensor/sensor-info/sensor-info.component';
+import { ShipmentInfoComponent } from './user/shipment/shipment-info/shipment-info.component';
 import { NewUserDialogComponent } from './admin/new-user-dialog/new-user-dialog.component';
 import { NewSensorDialogComponent } from './admin/new-sensor-dialog/new-sensor-dialog.component';
 import { DeleteUserDialogComponent } from './admin/delete-user-dialog/delete-user-dialog.component';
 import { DeleteSensorDialogComponent } from './admin/delete-sensor-dialog/delete-sensor-dialog.component';
+import { ShipmentInfoDialogComponent } from './shipment-info-dialog/shipment-info-dialog.component';
+import { AdminShipmentInfoComponent } from './admin/shipment-info/admin-shipment-info.component';
+import { RemoveResourcePipe } from './shared/remove-resource.pipe';
+import { NewShipmentDialogComponent } from './admin/new-shipment-dialog/new-shipment-dialog.component';
 
 
 @NgModule({
@@ -29,12 +33,16 @@ import { DeleteSensorDialogComponent } from './admin/delete-sensor-dialog/delete
     LoginComponent,
     AdminSensorInfoComponent,
     AdminUserInfoComponent,
-    SensorInfoComponent,
+    ShipmentInfoComponent,
     PageNotFoundComponent,
     NewUserDialogComponent,
     NewSensorDialogComponent,
     DeleteUserDialogComponent,
     DeleteSensorDialogComponent,
+    ShipmentInfoDialogComponent,
+    AdminShipmentInfoComponent,
+    RemoveResourcePipe,
+    NewShipmentDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,13 +55,15 @@ import { DeleteSensorDialogComponent } from './admin/delete-sensor-dialog/delete
     LayoutModule,
     MaterialModule,
   ],
-  providers: [],
+  providers: [RemoveResourcePipe],
   bootstrap: [AppComponent],
   entryComponents: [
     NewUserDialogComponent,
     NewSensorDialogComponent,
     DeleteUserDialogComponent,
     DeleteSensorDialogComponent,
+    ShipmentInfoDialogComponent,
+    NewShipmentDialogComponent,
   ]
 })
 export class AppModule { }

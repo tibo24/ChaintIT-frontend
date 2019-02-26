@@ -19,8 +19,8 @@ export class DeleteUserDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteUser(firstname: string, userId: string) {
-    this.dialogRef.close({firstname, userId});
+  deleteUser(firstName: string, userId: string) {
+    this.dialogRef.close({firstName, userId});
   }
 
   close() {

@@ -14,7 +14,7 @@ import { DeleteUserDialogComponent } from '../delete-user-dialog/delete-user-dia
 })
 export class AdminUserInfoComponent implements OnInit {
 
-  displayedColumns: string[] = ['email', 'firstname', 'lastname', 'actions'];
+  displayedColumns: string[] = ['email', 'firstName', 'lastName', 'participant', 'company', 'actions'];
   dataSource = new MatTableDataSource<any[]>();
   cardSizes: any;
   userList;
@@ -53,10 +53,12 @@ export class AdminUserInfoComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      firstname: '',
-      lastname: '',
+      firstName: '',
+      lastName: '',
       email: '',
-      password: ''
+      password: '',
+      company: '',
+      selectedParticipant: '',
     };
 
     const dialogRef = this.dialog.open(NewUserDialogComponent, dialogConfig);
@@ -73,26 +75,25 @@ export class AdminUserInfoComponent implements OnInit {
     );
   }
 
-  openDeleteUserDialog(firstname: string, userId: string) {
+  openDeleteUserDialog(firstName: string, userId: string) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      title: 'Bent u zeker dat u ' + firstname + ' wilt verwijderen?'
+      title: 'Bent u zeker dat u ' + firstName + ' wilt verwijderen?'
     }
 
     const dialogRef = this.dialog.open(DeleteUserDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
       (data) => {
         if (data) {
-          this.userService.deleteUser(firstname, userId)
+          this.userService.deleteUser(firstName, userId)
             .then(() => {
               this.getAllUsers();
             })
         }
-      }
-    );
+      });
   }
 
   applyFilter(filterValue: string) {
@@ -101,14 +102,11 @@ export class AdminUserInfoComponent implements OnInit {
 
   getAllUsers() {
     this.response = [];
-    this.userList = this.userService.getAllUsers();
-    this.userList.subscribe(res => {
-      if (res.length == 0) this.dataSource.data = [];
-      for (let user of res) {
-        this.response.push({ 'id': user._id, 'email': user.email, 'firstname': user.firstname, 'lastname': user.lastname });
-        this.dataSource.data = this.response;
-      }
-    });
+    this.userService.getAllUsers()
+      .then((res) => {
+        this.response.push(res);
+        this.dataSource.data = this.response[0];
+      });
   }
 
 }

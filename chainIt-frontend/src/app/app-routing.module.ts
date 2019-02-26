@@ -5,9 +5,10 @@ import { LoginComponent } from './login/login.component'
 import { AdminSensorInfoComponent } from './admin/sensor-info/admin-sensor-info.component';
 import { AdminUserInfoComponent } from './admin/user-info/admin-user-info.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { SensorInfoComponent } from './user/sensor/sensor-info/sensor-info.component';
+import { ShipmentInfoComponent } from './user/shipment/shipment-info/shipment-info.component';
 import { UserGuard } from './guards/user.guard';
 import { Role } from './models/role';
+import { AdminShipmentInfoComponent } from './admin/shipment-info/admin-shipment-info.component';
 
 const routes: Routes = [
   {
@@ -21,10 +22,8 @@ const routes: Routes = [
     data: { roles: [Role.User] }
   },
   {
-    path: 'sensor',
-    component: SensorInfoComponent,
-    canActivate: [UserGuard],
-    data: { roles: [Role.User] }
+    path: 'shipment/:shipment',
+    component: ShipmentInfoComponent
   },
   {
     path: 'admin/sensors',
@@ -35,6 +34,12 @@ const routes: Routes = [
   {
     path: 'admin/users',
     component: AdminUserInfoComponent,
+    canActivate: [UserGuard],
+    data: { roles: [Role.Admin] }
+  },
+  {
+    path: 'admin/shipments',
+    component: AdminShipmentInfoComponent,
     canActivate: [UserGuard],
     data: { roles: [Role.Admin] }
   },

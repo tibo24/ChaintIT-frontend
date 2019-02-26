@@ -3,15 +3,27 @@
   <h2 mat-dialog-title>Gebruiker aanmaken</h2>
 
   <mat-form-field>
-    <input type="text" matInput #firstname placeholder="Voornaam" formControlName="firstname" required>
+    <input type="text" matInput #firstName placeholder="Voornaam" formControlName="firstName" required>
   </mat-form-field>
 
   <mat-form-field>
-    <input type="text" matInput #lastname placeholder="Achternaam" formControlName="lastname" required>
+    <input type="text" matInput #lastName placeholder="Achternaam" formControlName="lastName" required>
   </mat-form-field>
 
   <mat-form-field>
     <input type="email" matInput #email placeholder="Email" formControlName="email" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="text" matInput #company placeholder="Bedrijf" formControlName="company" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Deelnemer" formControlName="selectedParticipant" required>
+      <mat-option *ngFor="let participant of participants" [value]="participant">
+        {{participant}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 
   <mat-form-field>

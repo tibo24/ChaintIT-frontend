@@ -11,10 +11,11 @@
   <mat-sidenav #sidenav [mode]="modeView">
     <mat-nav-list>
       <a mat-list-item routerLink="main-dashboard" *ngIf="isUser">Mijn Dashboard</a>
-      <a mat-list-item routerLink="admin/users" *ngIf="isAdmin">Users</a>
+      <a mat-list-item routerLink="admin/users" *ngIf="isAdmin">Gebruikers</a>
       <a mat-list-item routerLink="admin/sensors" *ngIf="isAdmin">Sensors</a>
-      <a mat-list-item routerLink="login" *ngIf="isLoggedIn">Inloggen</a>
-      <a mat-list-item (click)="logout()" *ngIf="!isLoggedIn">Uitloggen</a>
+      <a mat-list-item routerLink="admin/shipments" *ngIf="isAdmin">Shipments</a>
+      <a mat-list-item routerLink="login" *ngIf="!isLoggedIn">Inloggen</a>
+      <a mat-list-item (click)="logout()" *ngIf="isLoggedIn">Uitloggen</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

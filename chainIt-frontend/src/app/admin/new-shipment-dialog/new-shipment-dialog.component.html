@@ -1,0 +1,58 @@
+<mat-dialog-content class="dialog-container" [formGroup]="form">
+
+  <h2 mat-dialog-title>Shipment aanmaken</h2>
+
+  <mat-form-field>
+    <input type="text" matInput #product placeholder="Product" formControlName="product" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="text" matInput #minTemp placeholder="Min. Temp" formControlName="minTemp" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="text" matInput #maxTemp placeholder="Max. Temp" formControlName="maxTemp" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Sensor" formControlName="selectedSensor" required>
+      <mat-option *ngFor="let sensor of sensors" [value]="sensor.lrcid">
+        {{ sensor.lrcid }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="number" matInput #unitCount placeholder="Unit Count" formControlName="unitCount" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Sender" formControlName="selectedSender" required>
+      <mat-option *ngFor="let sender of senders" [value]="sender.email">
+        {{ sender.email }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Shipper" formControlName="selectedShipper" required>
+      <mat-option *ngFor="let shipper of shippers" [value]="shipper.email">
+        {{ shipper.email }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Receiver" formControlName="selectedReceiver" required>
+      <mat-option *ngFor="let receiver of receivers" [value]="receiver.email">
+        {{ receiver.email }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-dialog-actions>
+    <button class="mat-raised-button" (click)="close()">Sluit</button>
+    <button class="mat-raised-button mat-primary" (click)="submit()">Ok</button>
+  </mat-dialog-actions>
+
+</mat-dialog-content>

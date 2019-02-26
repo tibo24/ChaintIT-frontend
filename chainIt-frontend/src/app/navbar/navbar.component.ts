@@ -39,10 +39,10 @@ export class NavbarComponent implements OnInit {
   }
 
   get isUser() {
-    return this.currentUser && this.currentUser.role != Role.Admin;
+    return this.currentUser && this.currentUser.role === Role.User;
   }
 
-  getIsLoggedIn() {
+  get isLoggedIn() {
     return this.currentUser;
   }
 

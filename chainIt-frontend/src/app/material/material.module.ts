@@ -16,6 +16,10 @@ import {
   MatTableModule,
   MatPaginatorModule,
   MatDialogModule,
+  MatButtonToggleModule,
+  MatSelectModule,
+  MatChipsModule,
+  MatSlideToggleModule,
 } from '@angular/material';
 
 @NgModule({
@@ -38,6 +42,10 @@ import {
     MatPaginatorModule,
     MatIconModule,
     MatDialogModule,
+    MatButtonToggleModule,
+    MatSelectModule,
+    MatChipsModule,
+    MatSlideToggleModule,
   ], providers: [
     MatDatepickerModule,
   ]
