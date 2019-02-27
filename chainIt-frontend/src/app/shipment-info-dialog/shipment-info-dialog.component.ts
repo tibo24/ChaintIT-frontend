@@ -62,8 +62,8 @@ export class ShipmentInfoDialogComponent implements OnInit {
   }
 
   setShipperAsResponsibleUser() {
-    this.checkedSender = true;
     this.checkedShipper = true;
+    this.checkedSender = false;
     this.disabledSender = true;
     this.disabledShipper = true;
     this.responsibleUser = this.shipper;
@@ -71,6 +71,7 @@ export class ShipmentInfoDialogComponent implements OnInit {
   }
 
   setReceiverAsResponsibleUser() {
+    this.checkedShipper = false;
     this.checkedReceiver = true;
     this.disabledReceiver = true;
     this.disabledSender = true;

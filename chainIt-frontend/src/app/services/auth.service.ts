@@ -32,7 +32,6 @@ export class AuthService {
 
   meldAan(email: string, password: string) {
     this.loading = true;
-
     return this.http.post(this.LOGIN_API_URL, { email, password })
       .subscribe(
         (res) => {
@@ -56,7 +55,12 @@ export class AuthService {
     if (user && user.token) {
       this.currentUserSubject.next(user);
       localStorage.setItem('currentUser', JSON.stringify(user));
-      this.router.navigate(['/main-dashboard']);
+      if(user.role === "User") {
+        this.router.navigate(['/main-dashboard']);
+      }
+      if(user.role === "Admin") {
+        this.router.navigate(['/admin/shipments']);
+      }
     } else {
       this.currentUserSubject.next(null);
     }

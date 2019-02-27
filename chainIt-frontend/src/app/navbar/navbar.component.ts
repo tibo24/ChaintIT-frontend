@@ -20,12 +20,11 @@ export class NavbarComponent implements OnInit {
       } else {
         this.modeView = 'push';
       }
-    }
-    );
+    });
 
   constructor(private breakpointObserver: BreakpointObserver, private authService: AuthService) {
     this.authService.currentUser.subscribe(x => this.currentUser = x);
-   }
+  }
 
   ngOnInit() {
   }
@@ -44,6 +43,10 @@ export class NavbarComponent implements OnInit {
 
   get isLoggedIn() {
     return this.currentUser;
+  }
+
+  get userFirstName() {
+    return this.currentUser.firstName
   }
 
   logout() {

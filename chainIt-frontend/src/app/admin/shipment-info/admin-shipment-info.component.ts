@@ -17,7 +17,7 @@ import { useAnimation } from '@angular/animations';
 export class AdminShipmentInfoComponent implements OnInit {
 
   displayedColumns: string[] = ['shipmentId', 'productName', 'minTemp', 'maxTemp', 'sensor', 'unitCount', 'sender', 'shipper', 'receiver'];
-  dataSource = new MatTableDataSource<any[]>();
+  dataSource: any = new MatTableDataSource<any[]>();
   cardSizes: any;
   shipmentList;
   response: any[] = [];
@@ -59,11 +59,9 @@ export class AdminShipmentInfoComponent implements OnInit {
 
   getAllShipments() {
     this.dataSource.data = [];
-    this.shipmentList = this.shipmentService.getAllShipments();
-    this.shipmentList.subscribe(res => {
-      if (res.length <= 0) this.dataSource.data = [];
-      this.dataSource.data = res;
-    });
+    this.shipmentService.getAllShipments()
+    .then((res) => this.dataSource.data = res)
+    .catch((err) => console.log(err));
   }
 
   getAllUsers() {

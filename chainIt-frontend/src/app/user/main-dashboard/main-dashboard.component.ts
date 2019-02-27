@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from 'src/app/services/user.service';
-import { MatDialog, MatDialogConfig } from '@angular/material';
+import { MatDialog, MatDialogConfig, MatPaginator } from '@angular/material';
 import { ShipmentInfoDialogComponent } from 'src/app/shipment-info-dialog/shipment-info-dialog.component';
 import { ShipmentService } from 'src/app/services/shipment.service';
 
@@ -20,6 +20,8 @@ export class MainDashboardComponent implements OnInit {
   response: any[] = [];
 
   dataSource = new MatTableDataSource<any[]>();
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   displayedColumns: string[] = ['product', 'aantal', 'status', 'sensor', 'actions'];
   sensorData = [
@@ -68,12 +70,12 @@ export class MainDashboardComponent implements OnInit {
   constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog, private userService: UserService, private shipmentService: ShipmentService) { this.view = [innerWidth / 1.3, 300]; }
 
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
     this.getAllShipments();
   }
 
   openResponsibleUserDialog(sender: string, shipper: string, receiver: string, responsibleUsers: [], shipmentId: string) {
     const dialogConfig = new MatDialogConfig();
-    // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {

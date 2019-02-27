@@ -44,21 +44,19 @@ export class NewShipmentDialogComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      product: [this.product, [Validators.required]],
-      minTemp: [this.minTemp, [Validators.required]],
-      maxTemp: [this.maxTemp, [Validators.required]],
-      unitCount: [this.unitCount, [Validators.required]],
-      selectedSensor: [this.selectedSensor, [Validators.required]],
-      selectedSender: [this.selectedSender, [Validators.required]],
-      selectedShipper: [this.selectedShipper, [Validators.required]],
-      selectedReceiver: [this.selectedReceiver, [Validators.required]],
+      product: [this.product],
+      minTemp: [this.minTemp],
+      maxTemp: [this.maxTemp],
+      unitCount: [this.unitCount],
+      selectedSensor: [this.selectedSensor],
+      selectedSender: [this.selectedSender],
+      selectedShipper: [this.selectedShipper],
+      selectedReceiver: [this.selectedReceiver],
     });
   }
 
   submit() {
-    var valid = this.form.validator;
-    if (true) {
-      console.log(this.form.value);
+    if (this.form.valid) {
       this.dialogRef.close(this.form.value);
     } else {
       this.openSnackbar('Gelieven alles in te vullen aub')

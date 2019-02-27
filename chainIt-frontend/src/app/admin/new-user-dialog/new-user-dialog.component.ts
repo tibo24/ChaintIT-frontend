@@ -38,19 +38,17 @@ export class NewUserDialogComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      firstName: [this.firstName, [Validators.required]],
-      lastName: [this.lastName, [Validators.required]],
-      email: [this.email, [Validators.required]],
-      password: [this.password, [Validators.required]],
-      selectedParticipant: [this.selectedParticipant, [Validators.required]],
-      company: [this.company, [Validators.required]],
+      firstName: [this.firstName],
+      lastName: [this.lastName],
+      email: [this.email],
+      password: [this.password],
+      selectedParticipant: [this.selectedParticipant],
+      company: [this.company],
     });
   }
 
   submit() {
-    var value = this.form.value;
-    console.log(this.form.value);
-    if (true) {
+    if (this.form.valid) {
       this.dialogRef.close(this.form.value);
     } else {
       this.openSnackbar('Gelieven alles in te vullen aub')

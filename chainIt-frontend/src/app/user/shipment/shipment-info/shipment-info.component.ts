@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute } from '@angular/router';
 import { ShipmentService } from 'src/app/services/shipment.service';
 import { DatePipe } from '@angular/common';
+import { MatSort } from '@angular/material';
 
 @Component({
   selector: 'app-shipment-info',
@@ -29,7 +30,7 @@ export class ShipmentInfoComponent implements OnInit {
   dataSource = new MatTableDataSource<any[]>();
   temperatureList: any[] = [];
 
-  displayedColumns: string[] = ['location', 'date', 'temp'];
+  displayedColumns: string[] = ['location', 'date', 'temp', 'responsibleUser'];
 
   cards = this.breakpointObserver.observe(Breakpoints.Large).pipe(
     map(({ matches }) => {
@@ -68,9 +69,12 @@ export class ShipmentInfoComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver, private route: ActivatedRoute, private shipmentService: ShipmentService, private datePipe: DatePipe) { }
 
+  @ViewChild(MatSort) sort: MatSort;
+
   ngOnInit() {
     this.snapshotParam = this.route.snapshot.paramMap.get('shipment');
     this.shipmentInformation(this.snapshotParam);
+    this.dataSource.sort = this.sort;
   }
 
   shipmentInformation(shipmentId: string) {
@@ -87,7 +91,7 @@ export class ShipmentInfoComponent implements OnInit {
 
       this.temperatureList[0].map((temperatureReading) => {
         this.tempGraph[0].series.push({ 'name': this.datePipe.transform(temperatureReading.time, this.dateFormat), 'value': temperatureReading.temperature });
-        this.response.push({ 'location': temperatureReading.Lrcid, 'date': this.datePipe.transform(temperatureReading.time, this.dateFormat), 'temp': temperatureReading.temperature });
+        this.response.push({ 'location': temperatureReading.Lrcid, 'date': this.datePipe.transform(temperatureReading.time, this.dateFormat), 'temp': temperatureReading.temperature, 'responsibleUser': temperatureReading.verantwoordelijke});
         this.tempGraph = [...this.tempGraph];
         this.dataSource.data = this.response;
       });

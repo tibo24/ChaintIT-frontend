@@ -22,13 +22,12 @@ export class NewSensorDialogComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      lrcid: [this.lrcid, []],
+      lrcid: [this.lrcid],
     });
   }
 
   submit() {
-    var value = this.form.value;
-    if (value.lrcid) {
+    if (this.form.valid) {
       this.dialogRef.close(this.form.value);
     } else {
       this.openSnackbar('Gelieven alles in te vullen aub');

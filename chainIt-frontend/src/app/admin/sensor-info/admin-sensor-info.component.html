@@ -1,4 +1,7 @@
 <h1 class="mat-h1">Sensors</h1>
+<div *ngIf="sensorService.loading">
+  <mat-progress-bar mode="buffer"></mat-progress-bar>
+</div>
 <div class="example-table-container">
   <mat-form-field>
     <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">

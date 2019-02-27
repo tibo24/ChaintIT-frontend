@@ -10,6 +10,7 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav [mode]="modeView">
     <mat-nav-list>
+      <p *ngIf="isLoggedIn" class="mat-subheading-2">Hallo {{ userFirstName }}</p>
       <a mat-list-item routerLink="main-dashboard" *ngIf="isUser">Mijn Dashboard</a>
       <a mat-list-item routerLink="admin/users" *ngIf="isAdmin">Gebruikers</a>
       <a mat-list-item routerLink="admin/sensors" *ngIf="isAdmin">Sensors</a>

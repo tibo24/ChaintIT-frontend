@@ -20,6 +20,8 @@ import {
   MatSelectModule,
   MatChipsModule,
   MatSlideToggleModule,
+  MatProgressBarModule,
+  MatSortModule,
 } from '@angular/material';
 
 @NgModule({
@@ -46,6 +48,8 @@ import {
     MatSelectModule,
     MatChipsModule,
     MatSlideToggleModule,
+    MatProgressBarModule,
+    MatSortModule,
   ], providers: [
     MatDatepickerModule,
   ]

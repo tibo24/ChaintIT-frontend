@@ -52,7 +52,7 @@ export class AdminSensorInfoComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
       data => {
         if (data) {
-          this.sensorService.registerUser(data)
+          this.sensorService.createSensor(data)
             .then(() => {
               this.getAllSensors();
             })
