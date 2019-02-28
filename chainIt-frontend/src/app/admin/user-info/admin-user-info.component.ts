@@ -39,7 +39,7 @@ export class AdminUserInfoComponent implements OnInit {
   ).subscribe();
 
 
-  constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog, private userService: UserService) { }
+  constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog, public userService: UserService) { }
 
 
   ngOnInit() {
@@ -81,7 +81,7 @@ export class AdminUserInfoComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      title: 'Bent u zeker dat u ' + firstName + ' wilt verwijderen?'
+      title: 'Bent u zeker dat u ' + firstName + ' wilt verwijderen?',
     }
 
     const dialogRef = this.dialog.open(DeleteUserDialogComponent, dialogConfig);

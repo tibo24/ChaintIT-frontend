@@ -19,7 +19,7 @@ export class AdminSensorInfoComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private dialog: MatDialog, private sensorService: SensorService) { }
+  constructor(private dialog: MatDialog, public sensorService: SensorService) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;

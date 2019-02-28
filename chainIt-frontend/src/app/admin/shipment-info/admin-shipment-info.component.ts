@@ -16,7 +16,7 @@ import { useAnimation } from '@angular/animations';
 })
 export class AdminShipmentInfoComponent implements OnInit {
 
-  displayedColumns: string[] = ['shipmentId', 'productName', 'minTemp', 'maxTemp', 'sensor', 'unitCount', 'sender', 'shipper', 'receiver'];
+  displayedColumns: string[] = ['shipmentId', 'productName', 'minTemp', 'maxTemp', 'sensor', 'unitCount', 'sender', 'shipper', 'receiver', 'actions'];
   dataSource: any = new MatTableDataSource<any[]>();
   cardSizes: any;
   shipmentList;
@@ -26,7 +26,6 @@ export class AdminShipmentInfoComponent implements OnInit {
   senders: any[] = [];
   shippers: any[] = [];
   receivers: any[] = [];
-
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -46,7 +45,7 @@ export class AdminShipmentInfoComponent implements OnInit {
     })
   ).subscribe();
 
-  constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog, private shipmentService: ShipmentService, private removeResourcePipe: RemoveResourcePipe, private sensorService: SensorService, private userService: UserService) { }
+  constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog, public shipmentService: ShipmentService, private sensorService: SensorService, public userService: UserService) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;

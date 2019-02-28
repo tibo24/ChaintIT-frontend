@@ -67,7 +67,7 @@ export class MainDashboardComponent implements OnInit {
     domain: ['#0000b2', '#C7B42C', '#5AA454']
   };
 
-  constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog, private userService: UserService, private shipmentService: ShipmentService) { this.view = [innerWidth / 1.3, 300]; }
+  constructor(private breakpointObserver: BreakpointObserver, private dialog: MatDialog, public userService: UserService, public shipmentService: ShipmentService) { this.view = [innerWidth / 1.3, 300]; }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;

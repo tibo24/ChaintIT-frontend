@@ -67,7 +67,7 @@ export class ShipmentInfoComponent implements OnInit {
 
   response: any[] = [];
 
-  constructor(private breakpointObserver: BreakpointObserver, private route: ActivatedRoute, private shipmentService: ShipmentService, private datePipe: DatePipe) { }
+  constructor(private breakpointObserver: BreakpointObserver, private route: ActivatedRoute, public shipmentService: ShipmentService, private datePipe: DatePipe) { }
 
   @ViewChild(MatSort) sort: MatSort;
 
@@ -87,14 +87,17 @@ export class ShipmentInfoComponent implements OnInit {
       this.product = this.shipmentData.productName;
       this.minTemp = this.shipmentData.minTemp;
       this.maxTemp = this.shipmentData.maxTemp;
-      this.currentTemp = this.temperatureList[0][this.temperatureList[0].length - 1].temperature;
 
-      this.temperatureList[0].map((temperatureReading) => {
-        this.tempGraph[0].series.push({ 'name': this.datePipe.transform(temperatureReading.time, this.dateFormat), 'value': temperatureReading.temperature });
-        this.response.push({ 'location': temperatureReading.Lrcid, 'date': this.datePipe.transform(temperatureReading.time, this.dateFormat), 'temp': temperatureReading.temperature, 'responsibleUser': temperatureReading.verantwoordelijke});
-        this.tempGraph = [...this.tempGraph];
-        this.dataSource.data = this.response;
-      });
+      if(this.temperatureList[0][0]) {
+        this.currentTemp = this.temperatureList[0][this.temperatureList[0].length - 1].temperature;
+        this.temperatureList[0].map((temperatureReading) => {
+          this.tempGraph[0].series.push({ 'name': this.datePipe.transform(temperatureReading.time, this.dateFormat), 'value': temperatureReading.temperature });
+          this.response.push({ 'location': temperatureReading.Lrcid, 'date': this.datePipe.transform(temperatureReading.time, this.dateFormat), 'temp': temperatureReading.temperature, 'responsibleUser': temperatureReading.verantwoordelijke});
+          this.tempGraph = [...this.tempGraph];
+          this.dataSource.data = this.response;
+        });
+      }
+
     })
     .catch((err) => {
       this.product = 'Geen info gevonden over deze shipment';

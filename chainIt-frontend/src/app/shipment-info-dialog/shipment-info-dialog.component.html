@@ -2,15 +2,15 @@
 
   <h2 mat-dialog-title>Verantwoordelijken</h2>
 
-  <mat-slide-toggle class="example-margin" [color]="color" [checked]="checkedSender" [disabled]="disabledSender" (change)="setSenderAsResponsibleUser()">
+  <mat-slide-toggle class="example-margin" [checked]="checkedSender" [disabled]="disabledSender" (change)="setSenderAsResponsibleUser()">
     Sender: {{ sender | removeResourcePipe }}
   </mat-slide-toggle>
 
-  <mat-slide-toggle class="example-margin" [color]="color" [checked]="checkedShipper" [disabled]="disabledShipper" (change)="setShipperAsResponsibleUser()">
+  <mat-slide-toggle class="example-margin" [checked]="checkedShipper" [disabled]="disabledShipper" (change)="setShipperAsResponsibleUser()">
     Shipper: {{ shipper | removeResourcePipe }}
   </mat-slide-toggle>
 
-  <mat-slide-toggle class="example-margin" [color]="color" [checked]="checkedReceiver" [disabled]="disabledReceiver" (change)="setReceiverAsResponsibleUser()">
+  <mat-slide-toggle class="example-margin" [checked]="checkedReceiver" [disabled]="disabledReceiver" (change)="setReceiverAsResponsibleUser()">
     Receiver: {{ receiver | removeResourcePipe }}
   </mat-slide-toggle>
 

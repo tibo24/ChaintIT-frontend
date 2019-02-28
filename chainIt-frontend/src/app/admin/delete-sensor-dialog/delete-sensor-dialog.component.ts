@@ -19,8 +19,8 @@ export class DeleteSensorDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  deleteSensor(lrcid: string, sensorId: string) {
-    this.dialogRef.close({lrcid, sensorId});
+  deleteSensor() {
+    this.dialogRef.close('delete');
   }
 
   close() {

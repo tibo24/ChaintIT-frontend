@@ -12,6 +12,10 @@ import { AdminShipmentInfoComponent } from './admin/shipment-info/admin-shipment
 
 const routes: Routes = [
   {
+    path: '',
+    component: LoginComponent
+  },
+  {
     path: 'login',
     component: LoginComponent
   },

@@ -9,9 +9,13 @@ import { AuthService } from '../services/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: AuthService, private snackBar: MatSnackBar) { }
+  constructor(public authService: AuthService, private snackBar: MatSnackBar) { }
 
   ngOnInit() {
+    const currentUser = this.authService.currentUserValue;
+    if(currentUser) {
+      this.authService.setUserData(currentUser);
+    }
   }
 
   login(email: string, password: string) {
